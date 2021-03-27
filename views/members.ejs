@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Capoeira School Tracker</title>
+</head>
+<body>
+  <h1>Members</h1>
+    <form class="new">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" placeholder="Enter name">
+      </div>
+      <div>
+        <label for="nickname">Capoeira Name:</label>
+        <input id="nickname" type="text" name="nickname" placeholder="Enter Capoeira name">
+      </div>
+      <div>
+        <label for="rank">Rank:</label>
+        <input id="rank" type="text" name="rank" placeholder="Enter rank (Graduado/Monitor/Formado)">
+      </div>
+      <div>
+        <label for="membership">Membership</label>
+        <select id="membership">
+            <% for(i = 0; i < membership.length; i++) { %>
+            <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
+            <% } %>
+        </select>
+      </div>
+      <div>
+        <label for="profile">Profile Picture:</label>
+        <input id="profile" type="file" name="file-to-upload">
+      </div>
+      <input type="submit" class="submitNew" value="Add Member">
+    </form>
+
+    <ul id="list">
+      <% for(i = 0; i < members.length; i++) { %>
+          <li class="person">
+            <div>
+              <div>
+                <section class="info">
+                  <h2 class="name"><%= members[i].name %></h2>
+                  <h2 class="nickname"><%= members[i].nickname %></h2>
+                  <h3 class="rank"><%= members[i].rank %></h3>
+                  <h3 class="membership"><%= members[i].membership %></h3>
+                </section>
+                <img class="profile" src="<%= members[i].profile %>" >
+                <button class="delete">DELETE</button>
+                <button class="edit">Edit</button>
+              </div>
+            </div>
+            <form class="editForm hide">
+              <div>
+                <label for="name">Name:</label>
+                <input class="name" type="text" name="newName" placeholder="Enter name">
+              </div>
+              <div>
+                <label for="nickname">Capoeira Name:</label>
+                <input class="nickname" type="text" name="newNickname" placeholder="Enter Capoeira name">
+              </div>
+              <div>
+                <label for="rank">Rank:</label>
+                <input class="rank" type="text" name="newRank" placeholder="Enter rank (Graduado/Monitor/Formado)">
+              </div>
+              <div>
+                <label for="newMembership">Membership</label>
+                <select class="newMembership">
+                    <% for(i = 0; i < membership.length; i++) { %>
+                    <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
+                    <% } %>
+                </select>
+              </div>
+              <div>
+                <label for="profile">Profile Picture:</label>
+                <input class="profile" type="file" name="file-to-upload">
+              </div>
+              <input type="submit" class="submit submitEdit" value="Submit">
+              <button type="button" class="cancelEdit">Cancel</button>
+            </form>
+          </li>
+      <% } %>
+    </ul>
+
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

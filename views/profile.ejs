@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <title>Capoeira School Tracker</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <body id="profileBg">
+    <div class="profile container">
+    
+        <div class="header text-center">
+            <h1><span class="fa fa-bomb"></span> Main Page</h1>
+            <a href="/logout" class="btn btn-default btn-lg">Logout</a>
+        </div>
+    
+        <div class="row">
+    
+            <div class="col-sm-12">
+              <h3 class="text-center">Capoeira School Tracker</h3>
+              <ul class="posts">
+              <% for(var i=0; i<posts.length; i++) {%>
+                <li class="post">
+                  <p><%= posts[i].name %></p>
+                  <img src=<%= "" + posts[i].src %> >
+                  <p><%= posts[i].msg %></p>
+                  <span><%= posts[i].value %></span>
+                  <span><i class="fa fa-thumbs-up thumbs" aria-hidden="true"></i></span>
+                  <span class="tUp"><%=posts[i].thumbsUp%></span>
+                  <span><i class="fa fa-thumbs-down thumbs" aria-hidden="true"></i></span>
+                  <span class="tDown"><%=posts[i].thumbsDown%></span>
+                  <span class="total"><%=posts[i].thumbsUp - posts[i].thumbsDown%></span>
+                  <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                </li>
+              <% } %>
+              </ul>
+          </div>
+        <div class="col-sm-6">
+              <h2>Post Meme</h2>
+            <% if (user.local.email) { %>
+              <form id="userInput"action="/messages" method="POST">
+                <input type="text" value="<%= user.local.username %>" name="name">
+                <input type="text" placeholder="phto url" name="src">
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+            <% } %>
+    </div>
+    
+    <script src="main.js"></script>
+    
+    </body>
+    </html>
