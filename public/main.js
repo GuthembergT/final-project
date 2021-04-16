@@ -47,7 +47,7 @@ function addPerson(e){
         data.endDate = endDate;
     }
 
-    // addPersonDOM();
+    addPersonDOM();
 
     for(property in data)
         form.set(property, data[property]);
