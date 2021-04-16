@@ -5,9 +5,9 @@ const newPersonForm = document.querySelector('.new');
 newPersonForm.addEventListener('submit', addPerson);
 list.addEventListener('click', enableEditForm);
 list.addEventListener('click', cancelEdit);
-list.addEventListener('click', removeSingle);
 list.addEventListener('submit', submitEdit);
 list.addEventListener('click', viewMember);
+list.addEventListener('click', deleteMember);
 console.log(new Date());
 
 function viewMember(e) {
@@ -233,43 +233,22 @@ function taskComplete(e) {
     }
 }
 
-function removeSingle(e) {
+function deleteMember(e) {
     if (e.target.className === 'delete'){
         const info = e.target.closest('.person');
-        fetch('delete', {
+        fetch('members', {
         method: 'delete',
         headers: {'Content-Type':'application/json'},
         body:JSON.stringify({
             name: info.querySelector('.info .name').innerText,
             nickname: info.querySelector('.info .nickname').innerText,
             rank: info.querySelector('.info .rank').innerText,
-            group: info.querySelector('.info .group').innerText,
-            country: info.querySelector('.info .country').innerText,
-            logo: imagePath(info.querySelector('.logo').src)
+            membership: info.querySelector('.info .membership').innerText,
+            logo: imagePath(info.querySelector('.profile').src)
         })
         })
         .then(function(response) {
             window.location.reload();
         })
 }
-}
-
-function removeCompleted() {
-    fetch('completedTasks', {
-        method: 'delete',
-        headers: {'Content-Type' : 'application/json'}
-    })
-    .then(function(response) {
-        window.location.reload();
-    })
-}
-
-function removeAll() {
-    fetch('clear', {
-        method: 'delete',
-        headers: {'Content-Type' : 'application/json'}
-    })
-    .then(function(response) {
-        window.location.reload();
-    })
 }
