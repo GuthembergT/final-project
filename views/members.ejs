@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <title>Capoeira School Tracker</title>
 </head>
 <body>
@@ -25,10 +25,13 @@
       <div>
         <label for="membership">Membership</label>
         <select id="membership">
+          <option value="None" selected="selected">None</option>
             <% for(i = 0; i < membership.length; i++) { %>
             <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
             <% } %>
         </select>
+        <label for="start">Start Date</label>
+        <input id="start" type="date">
       </div>
       <div>
         <label for="profile">Profile Picture:</label>
@@ -43,7 +46,7 @@
             <div>
               <div>
                 <section class="info">
-                  <h2 class="name"><%= members[i].name %></h2>
+                  <h2 class="name"><span class="openPage"><%= members[i].name %></span></h2>
                   <h2 class="nickname"><%= members[i].nickname %></h2>
                   <h3 class="rank"><%= members[i].rank %></h3>
                   <h3 class="membership"><%= members[i].membership %></h3>
@@ -69,8 +72,8 @@
               <div>
                 <label for="newMembership">Membership</label>
                 <select class="newMembership">
-                    <% for(i = 0; i < membership.length; i++) { %>
-                    <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
+                    <% for(j = 0; j < membership.length; j++) { %>
+                    <option value="<%=membership[j].name%>"><%=membership[j].name%></option>
                     <% } %>
                 </select>
               </div>

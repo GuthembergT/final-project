@@ -4,9 +4,22 @@ body{
 }
 img{
   height: 200px;
+  border-radius: 200px 200px;
 }
 
-.tUp,
+/* .tUp,
 .tDown {
   display: none;
+} */
+
+.hide {
+  display: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.info {
+  display: block;
 }

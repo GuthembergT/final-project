@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="memberships.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Memberships</h1>
+    <button id="showForm">Add New Membership Option</button>
+    <form id="membershipForm" class="hide">
+        <label for="name">Membership Name</label>
+        <input id="name" type="text">
+        <label for="cost">Membership Cost</label>
+        <input id="cost" type="text">
+        <label for="duration">Membership Duration</label>
+        <input id="duration" type="number">
+        <select class="duration">
+            <option value="day">Day(s)</option>
+            <option value="month">Month(s)</option>
+            <option value="year">Year(s)</option>
+        </select>
+        <label for="limit">Limit</label>
+        <select id="limit">
+            <option value="Unlimited" selected="selected">Unlimited</option>
+            <option value="Limited">Limited</option>
+        </select>
+        <input type="number" id="limitNumber" class="hide">
+        <select id="occurences" class="hide">
+            <option value="classes every week">classes every week</option>
+            <option value="classes every month">class every month</option>
+            <option value="class punch card">class punch card</option>
+        </select>
+        <input type="submit" value="Add" class="sbmtMmbrshp">
+    </form>
+    <table class="memberships">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Duration</th>
+        </tr>
+        <% for (i = 0; i < membership.length; i++) { %>
+            <tr>
+                <td><h4 class="membershipName"><%= membership[i].name %></span></h4></td>
+                <td><h4 class="membershipCost">$<%= membership[i].cost %>.00</h4></td>
+                <td><h4 class="membershipDuration"><%= membership[i].duration %> <%= membership[i].durationUnit + (membership[i].duration > 1 ? 's' : '') %></h4></td>
+            </tr>
+        <% } %>
+    </table>
+    <script type="text/javascript" src="memberships.js"></script>
+</body>
+</html>

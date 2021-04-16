@@ -1,4 +1,6 @@
-module.exports = function(app, passport, db) {
+const { request } = require("express");
+
+module.exports = function(app, passport, db, multer) {
 
 // normal routes ===============================================================
 
@@ -11,6 +13,7 @@ module.exports = function(app, passport, db) {
     app.get('/members', isLoggedIn, function(req, response) {
         db.collection('members').find().toArray((err, result) => {
           db.collection('memberships').find().toArray((error, res) => {
+            console.log(result.length);
             if (error) return console.log(error);
             response.render('members.ejs', {
               user : req.user,
@@ -22,6 +25,62 @@ module.exports = function(app, passport, db) {
         })
     });
 
+    // INDIVIDUAL MEMBER ===========================
+    app.get('/member', isLoggedIn, function(req, response) {
+        db.collection('members').findOne({name:req.body.name}, (err, result) => {
+            console.log(result.length);
+            if (error) return console.log(error);
+            response.render('member.ejs', {
+              user : req.user,
+              info: result
+            });
+          });
+    });
+
+    // MEMBERSHIP SECTION =========================
+    app.get('/memberships', isLoggedIn, function(req, response) {
+      db.collection('memberships').find().toArray((error, result) => {
+        console.log(result.length);
+        if (error) return console.log(error);
+        response.render('memberships.ejs', {
+          user : req.user,
+          membership: result
+        })
+      })
+    });
+
+    app.post('/addMembership', isLoggedIn, function(req, response) {
+      console.log(req.body);
+      const requestInfo = {
+        name: req.body.name, 
+        cost: req.body.cost, 
+        duration: req.body.duration, 
+        durationUnit: req.body.durationUnit, 
+        limit: req.body.limit }
+      if('occurences' in req.body){
+        requestInfo.limitNumber = req.body.limitNumber;
+        requestInfo.occurences = req.body.occurences;
+      }
+        if (requestInfo.name != null &&
+            requestInfo.cost != null &&
+            requestInfo.duration != null &&
+            requestInfo.durationUnit != null) 
+          db.collection('memberships').insertOne( requestInfo, (err, result) => {
+            if(err) return err;
+            response.redirect('/memberships');
+        })
+    })
+
+    app.post('/membershipLog', isLoggedIn, (req, res) => {
+      db.collection('membershipLog').insertOne({ 
+        member: req.body.userId, 
+        membership: req.body.membership,
+        rate: req.body.rate, 
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
+      })
+    })
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
@@ -30,17 +89,34 @@ module.exports = function(app, passport, db) {
 
 // message board routes ===============================================================
 
-app.post('/members', (req, res) => {
-  db.collection('members').save({
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/img/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + ".png")
+  }
+})
+var upload = multer({storage: storage})
+
+
+app.post('/add', upload.single('file-to-upload'), (req, res) => {
+  console.log(req.file);
+  const reqInfo = {
     name: req.body.name, 
     nickname:req.body.nickname, 
     membership:req.body.membership, 
     rank:req.body.rank, 
-    profile: "img/" + req.file.filename
-  }, (err, result) => {
+    profile: (req.file) ? "img/" + req.file.filename : null
+  }
+  if(reqInfo.membership != 'None'){
+    reqInfo.startDate = req.body.startDate;
+    reqInfo.endDate = req.body.endDate;
+  }
+  db.collection('members').save( reqInfo, (err, result) => {
     if (err) return console.log(err)
-    console.log('saved to database')
-    res.redirect('/members')
+    console.log('saved to database');
+    res.redirect('/members');
   })
 })
 
