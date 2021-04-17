@@ -125,7 +125,17 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now() + ".png")
   }
 })
-var upload = multer({storage: storage})
+
+var upload = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: 'adminpeace',
+      key: function (req, file, cb) {
+          console.log(file);
+          cb(null, file.originalname); //use Date.now() for unique file keys
+      }
+  })
+});
 
 
 app.post('/add', upload.single('file-to-upload'), (req, res) => {
