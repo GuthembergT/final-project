@@ -1,7 +1,6 @@
-module.exports = function(app, passport, db, multer, aws, S3_BUCKET) {
+module.exports = function(app, passport, db, multer, aws) {
 
-// AWS
-app.get('/account', (req, res) => res.render('account.html'));
+// AWS =========================================
 
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
