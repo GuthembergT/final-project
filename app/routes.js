@@ -33,7 +33,7 @@ app.get('/sign-s3', (req, res) => {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('login.ejs');
+        res.render('index.ejs');
     });
 
     // MEMBERS SECTION =========================
