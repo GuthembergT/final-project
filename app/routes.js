@@ -1,5 +1,9 @@
 module.exports = function(app, passport, db, multer, aws) {
 
+  app.get('/signup', function(req, res) {
+    res.render('signup.ejs', { message: req.flash('signupMessage') });
+  });
+
 // AWS =========================================
 
 app.get('/sign-s3', (req, res) => {
@@ -215,9 +219,9 @@ app.delete('/members', (req, res) => {
 
         // SIGNUP =================================
         // show the signup form
-        app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
+        // app.get('/signup', function(req, res) {
+        //     res.render('signup.ejs', { message: req.flash('signupMessage') });
+        // });
 
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
