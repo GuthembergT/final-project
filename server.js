@@ -3,6 +3,7 @@
 
 // set up ======================================================================
 // get all the tools we need
+var aws = require('aws-sdk');
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 5000;
@@ -18,14 +19,16 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
+const S3_BUCKET = process.env.S3_BUCKET;
 
 var db
 
 // configuration ===============================================================
+aws.config.region = 'us-east-1';
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, multer);
+  require('./app/routes.js')(app, passport, db, multer, aws, S3_BUCKET);
 }); // connect to our database
 
 
