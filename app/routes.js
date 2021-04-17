@@ -214,18 +214,7 @@ app.delete('/members', (req, res) => {
         });
     });
 
-};
-
-// route middleware to ensure user is logged in
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-
-    res.redirect('/');
-}
-
-
-// AWS =========================================
+    // AWS =========================================
 
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
@@ -253,3 +242,13 @@ app.get('/sign-s3', (req, res) => {
     res.end();
   });
 });
+
+};
+
+// route middleware to ensure user is logged in
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+
+    res.redirect('/');
+}
