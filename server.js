@@ -28,7 +28,7 @@ aws.config.region = 'us-east-1';
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, multer, aws);
+  require('./app/routes.js')(app, passport, db, multer);
 }); // connect to our database
 
 
