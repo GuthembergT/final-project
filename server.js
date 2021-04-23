@@ -5,30 +5,31 @@
 // get all the tools we need
 var aws = require('aws-sdk');
 var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 5000;
+var fs = require('fs');
 const MongoClient = require('mongodb').MongoClient
 var mongoose = require('mongoose');
 var multer = require('multer');
+var multerS3 = require('multer-s3');
 var passport = require('passport');
 var flash    = require('connect-flash');
-
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-
+var ObjectId     = require('mongodb').ObjectID;
 var configDB = require('./config/database.js');
-const S3_BUCKET = process.env.S3_BUCKET;
+var configAWS = require('./config/aws.js')
 
+var app      = express();
+var port     = process.env.PORT || 5000;
+var s3 = new aws.S3(configAWS);
 var db
 
 // configuration ===============================================================
-aws.config.region = 'us-east-1';
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, multer);
+  require('./app/routes.js')(app, passport, db, multer, multerS3, s3, aws, ObjectId, fs);
 }); // connect to our database
 
 

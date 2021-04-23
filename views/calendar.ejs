@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+          <li><a href="/:id">Profile</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/memberships">Memberships</a></li>
+          <li><a href="/locations">Locations</a></li>
+          <li><a href="/classes">Classes</a></li>
+          <li><a href="/calendar">Calendar</a></li>
+        </nav>
+    </header>
+    <h2>CALENDAR</h2>
+
+    <div class="calendar-container">
+        <% for(let month = 0; month < calendar.length;month++) { %>
+
+        <div class="month-container" id="<%= months[month] %>">
+            <h3 style="text-align: center;"> <%= months[month] %> </h3>
+
+
+            <div class="day-of-week">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>
+                    Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <% for(let x = 0;x < calendar[month].length;x++) { %>
+            <div class="days">
+                <% for(let y = 0;y < calendar[month][x].length;y++) { %>
+
+                <div class="date">
+                    <div id="<%=calendar[month][x][y] %>">
+                        <%= calendar[month][x][y] %>
+                    </div>
+                </div>
+
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+
+        <% } %>
+    </div>
+</body>
+</html>

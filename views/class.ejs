@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+          <li><a href="/:id">Profile</a></li>
+          <li><a href="/members">Members</a></li>
+          <li><a href="/memberships">Memberships</a></li>
+          <li><a href="/locations">Locations</a></li>
+          <li><a href="/classes">Classes</a></li>
+          <li><a href="/calendar">Calendar</a></li>
+        </nav>
+    </header>
+
+    <section id="info">
+        <h3>Name: <span><%= info.name %></span></h3>
+        <h3>Location: <span><%= info.location %></span></h3>
+        <h3>Schedule</h3>
+        <table id="schedule">
+            <th>
+                <tr>Day</tr>
+                <tr>Start Time</tr>
+                <tr>Duration</tr>
+                <tr>Reservation</tr>
+                <tr>Capacity</tr>
+            </th>
+            <% for(i = 0; i < info.schedule.length; i++) { %>
+                <tr>
+                    <td><%= info.schedule[i].day %></td>
+                    <td><%= info.schedule[i].start %></td>
+                    <td><%= info.schedule[i].duration %></td>
+                    <% if ('reservation' in info.schedule[i]) { %>
+                        <td><%= info.schedule[i].duration %></td>
+                        <td><%= info.schedule[i].capacity %></td>
+                    <% } else { %>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                    <% } %>
+                </tr>
+            <% } %>
+        </table>
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,22 @@
+.login:visited,
+.login:hover,
+.login:active {
+    color: inherit;
+}
+
+.already-have-an-account {
+    text-align: center;
+}
+
+.or-go-home {
+    text-align: right;
+}
+
+.center-one {
+    margin-right: 175px;
+    margin-bottom: -49.5px;
+}
+.center-two {
+    /* display: inline; */
+    margin-left: 182px;
+}

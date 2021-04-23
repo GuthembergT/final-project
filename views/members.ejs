@@ -8,6 +8,16 @@
     <title>Capoeira School Tracker</title>
 </head>
 <body>
+  <header>
+    <nav>
+      <li><a href="/:id">Profile</a></li>
+      <li><a href="/members">Members</a></li>
+      <li><a href="/memberships">Memberships</a></li>
+      <li><a href="/locations">Locations</a></li>
+      <li><a href="/classes">Classes</a></li>
+      <li><a href="/calendar">Calendar</a></li>
+    </nav>
+  </header>
   <h1>Members</h1>
     <form class="new">
       <div>
@@ -46,20 +56,24 @@
             <div>
               <div>
                 <section class="info">
-                  <h2 class="name"><span class="openPage"><%= members[i].name %></span></h2>
+                  <h2 class="name"><span class="openPage"><a href="/<%= members[i].userId %>"><%= members[i].first %> <%= members[i].last %></a></span></h2>
                   <h2 class="nickname"><%= members[i].nickname %></h2>
                   <h3 class="rank"><%= members[i].rank %></h3>
                   <h3 class="membership"><%= members[i].membership %></h3>
                 </section>
-                <img class="profile" src="<%= members[i].profile %>" >
+                <img class="profile" src="/img/<%= members[i].picture %>" >
                 <button class="delete">DELETE</button>
                 <button class="edit">Edit</button>
               </div>
             </div>
             <form class="editForm hide">
               <div>
-                <label for="name">Name:</label>
-                <input class="name" type="text" name="newName" placeholder="Enter name">
+                <label for="name">First Name:</label>
+                <input class="first" type="text" name="newFirst" placeholder="Enter name">
+              </div>
+              <div>
+                <label for="name">Last Name:</label>
+                <input class="last" type="text" name="newLast" placeholder="Enter name">
               </div>
               <div>
                 <label for="nickname">Capoeira Name:</label>
@@ -88,6 +102,6 @@
       <% } %>
     </ul>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/members.js"></script>
 </body>
 </html>
