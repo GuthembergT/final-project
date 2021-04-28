@@ -1,107 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="ThemeZaa">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+  <meta name="description" content="Litho is a clean and modern design, BootStrap 4 responsive, business and portfolio multipurpose HTML5 template with 36+ ready homepage demos.">
+  
+  <!-- style sheets and font icons  -->
+  <link rel="stylesheet" type="text/css" href="css/font-icons.min.css">
+  <link rel="stylesheet" type="text/css" href="css/theme-vendors.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <title>Capoeira School Tracker</title>
 </head>
 <body>
+  <!-- start header -->
   <header>
-    <nav>
-      <li><a href="/:id">Profile</a></li>
-      <li><a href="/members">Members</a></li>
-      <li><a href="/memberships">Memberships</a></li>
-      <li><a href="/locations">Locations</a></li>
-      <li><a href="/classes">Classes</a></li>
-      <li><a href="/calendar">Calendar</a></li>
+    <!-- start navigation -->
+    <nav class="navbar top-space navbar-expand-lg navbar-boxed navbar-dark bg-black header-dark fixed-top responsive-sticky">
+      <div class="container-fluid nav-header-container">
+          <div class="col-auto col-sm-6 col-lg-2 mr-auto pl-lg-0">
+              <a class="navbar-brand" href="index.html">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="default-logo" alt="">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="alt-logo" alt="">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="mobile-logo" alt="">
+              </a>
+          </div>
+          <div class="col-auto menu-order px-lg-0">
+              <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav alt-font">
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/:id" class="nav-link">Profile</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/members" class="nav-link">Members</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/memberships" class="nav-link">Memberships</a>
+                      </li>
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/locations" class="nav-link">Locations</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/classes" class="nav-link">Classes</a>
+                          </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/calendar" class="nav-link">Calendar</a>
+                          </li>
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/logout" class="nav-link">Logout</a>
+                          </li>
+                  </ul>
+              </div>
+          </div>
     </nav>
+  <!-- end navigation -->
   </header>
-  <h1>Members</h1>
-    <form class="new">
-      <div>
-        <label for="name">Name:</label>
-        <input id="name" type="text" name="name" placeholder="Enter name">
-      </div>
-      <div>
-        <label for="nickname">Capoeira Name:</label>
-        <input id="nickname" type="text" name="nickname" placeholder="Enter Capoeira name">
-      </div>
-      <div>
-        <label for="rank">Rank:</label>
-        <input id="rank" type="text" name="rank" placeholder="Enter rank (Graduado/Monitor/Formado)">
-      </div>
-      <div>
-        <label for="membership">Membership</label>
-        <select id="membership">
-          <option value="None" selected="selected">None</option>
-            <% for(i = 0; i < membership.length; i++) { %>
-            <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
-            <% } %>
-        </select>
-        <label for="start">Start Date</label>
-        <input id="start" type="date">
-      </div>
-      <div>
-        <label for="profile">Profile Picture:</label>
-        <input id="profile" type="file" name="file-to-upload">
-      </div>
-      <input type="submit" class="submitNew" value="Add Member">
-    </form>
-
-    <ul id="list">
-      <% for(i = 0; i < members.length; i++) { %>
-          <li class="person">
-            <div>
-              <div>
-                <section class="info">
-                  <h2 class="name"><span class="openPage"><a href="/<%= members[i].userId %>"><%= members[i].first %> <%= members[i].last %></a></span></h2>
-                  <h2 class="nickname"><%= members[i].nickname %></h2>
-                  <h3 class="rank"><%= members[i].rank %></h3>
-                  <h3 class="membership"><%= members[i].membership %></h3>
-                </section>
-                <img class="profile" src="/img/<%= members[i].picture %>" >
-                <button class="delete">DELETE</button>
-                <button class="edit">Edit</button>
-              </div>
+  <!-- end header -->
+  <!-- start section -->
+  <section class="bg-light-gray wow animate__fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- title -->
+            <div class="col-md-12 text-center">
+                <h6 class="alt-font text-extra-dark-gray font-weight-500">Add New Member Profile</h6>
             </div>
-            <form class="editForm hide">
-              <div>
-                <label for="name">First Name:</label>
-                <input class="first" type="text" name="newFirst" placeholder="Enter name">
-              </div>
-              <div>
-                <label for="name">Last Name:</label>
-                <input class="last" type="text" name="newLast" placeholder="Enter name">
-              </div>
-              <div>
-                <label for="nickname">Capoeira Name:</label>
-                <input class="nickname" type="text" name="newNickname" placeholder="Enter Capoeira name">
-              </div>
-              <div>
-                <label for="rank">Rank:</label>
-                <input class="rank" type="text" name="newRank" placeholder="Enter rank (Graduado/Monitor/Formado)">
-              </div>
-              <div>
-                <label for="newMembership">Membership</label>
-                <select class="newMembership">
-                    <% for(j = 0; j < membership.length; j++) { %>
-                    <option value="<%=membership[j].name%>"><%=membership[j].name%></option>
-                    <% } %>
-                </select>
-              </div>
-              <div>
-                <label for="profile">Profile Picture:</label>
-                <input class="profile" type="file" name="file-to-upload">
-              </div>
-              <input type="submit" class="submit submitEdit" value="Submit">
-              <button type="button" class="cancelEdit">Cancel</button>
-            </form>
-          </li>
-      <% } %>
-    </ul>
+            <!-- end title -->
+            <div class="col-12 col-xl-6 col-lg-8 col-md-10 text-center">
+                <h6 class="font-weight-300 margin-eight-bottom sm-margin-30px-bottom">Adding a member here means creating a profile, not user. A message will be sent to the given email with the signup instructions.</h6>
+                <a class="btn btn-medium btn-medium btn-round-edge btn-fast-blue popup-with-zoom-anim" href="#modal-popup2">Create Profile</a>
+                <!-- start modal pop-up -->
+                <div id="modal-popup2" class="zoom-anim-dialog col-11 col-xl-3 col-lg-6 col-md-8 col-sm-9 mx-auto bg-white text-center modal-popup-main padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                    <span class="text-extra-dark-gray text-uppercase alt-font text-extra-large font-weight-600 margin-15px-bottom d-block">NEW MEMBER</span>
+                    <p>Please provide the following information.</p>
+                    <!-- start new member form -->
+                    <form class="new">
+                      <div>
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" name="name" placeholder="Enter name">
+                      </div>
+                      <div>
+                        <label for="nickname">Capoeira Name:</label>
+                        <input id="nickname" type="text" name="nickname" placeholder="Enter Capoeira name">
+                      </div>
+                      <div>
+                        <label for="rank">Rank:</label>
+                        <input id="rank" type="text" name="rank" placeholder="Enter rank (Graduado/Monitor/Formado)">
+                      </div>
+                      <div>
+                        <label for="membership">Membership</label>
+                        <select id="membership">
+                          <option value="None" selected="selected">None</option>
+                            <% for(i = 0; i < membership.length; i++) { %>
+                            <option value="<%=membership[i].name%>"><%=membership[i].name%></option>
+                            <% } %>
+                        </select>
+                        <label for="start">Start Date</label>
+                        <input id="start" type="date">
+                      </div>
+                      <div>
+                        <label for="profile">Profile Picture:</label>
+                        <input id="profile" type="file" name="file-to-upload">
+                      </div>
+                      <input type="submit" class="submitNew" value="Add Member">
+                    </form>
+                    <!-- end new member form -->
+                    <a class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss" href="#">Dismiss</a>
+                </div>
+                <!-- end modal pop-up -->
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- end section -->
 
+    <section class="big-section border-bottom border-color-extra-light-gray">
+      <div class="container">
+          <div id="list" class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 justify-content-center">
+              <!-- start team member -->
+              <% for(i = 0; i < members.length; i++) { %>
+                <div class="col team-style-01 text-center md-margin-30px-bottom xs-margin-15px-bottom">
+                    <figure class="border-radius-5px">
+                        <div class="team-member-image">
+                            <img alt="" src="/img/<%= members[i].picture %>">
+                            <div class="team-overlay bg-transparent-gradient-shamrock-green-light-orange border-radius-5px"></div>
+                        </div>
+                        <figcaption class="align-items-center justify-content-center d-flex flex-column padding-20px-lr padding-30px-tb">
+                            <a href="/<%= members[i].userId %>"><span class="team-title d-block alt-font text-white"><%= members[i].first %> <%= members[i].last %></span></a>
+                            <span class="team-sub-title text-small d-block text-white text-uppercase"><%= members[i].nickname %></span>
+                            <div class="social-icon w-100 position-absolute bottom-30px left-0px">
+                                <a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com" target="_blank" class="text-white"><i class="fab fa-instagram"></i></a>
+                                <a href="https://twitter.com/" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+              <% } %>
+              <!-- end team member -->
+              <!-- start team member -->
+              <!-- <div class="col team-style-01 text-center md-margin-30px-bottom xs-margin-15px-bottom">
+                  <figure class="border-radius-5px">
+                      <div class="team-member-image">
+                          <img alt="" src="https://placehold.it/525x639">
+                          <div class="team-overlay bg-transparent-gradient-shamrock-green-light-orange border-radius-5px"></div>
+                      </div>
+                      <figcaption class="align-items-center justify-content-center d-flex flex-column padding-20px-lr padding-30px-tb">
+                          <span class="team-title d-block alt-font text-white">Bryan Jonhson</span>
+                          <span class="team-sub-title text-small d-block text-white text-uppercase">Manager</span>
+                          <div class="social-icon w-100 position-absolute bottom-30px left-0px">
+                              <a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                              <a href="https://www.instagram.com" target="_blank" class="text-white"><i class="fab fa-instagram"></i></a>
+                              <a href="https://twitter.com/" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                          </div>
+                      </figcaption>
+                  </figure>
+              </div> -->
+              <!-- end team member -->
+              <!-- start team member -->
+              <!-- <div class="col team-style-01 text-center xs-margin-15px-bottom">
+                  <figure class="border-radius-5px">
+                      <div class="team-member-image">
+                          <img alt="" src="https://placehold.it/525x639">
+                          <div class="team-overlay bg-transparent-gradient-shamrock-green-light-orange border-radius-5px"></div>
+                      </div>
+                      <figcaption class="align-items-center justify-content-center d-flex flex-column padding-20px-lr padding-30px-tb">
+                          <span class="team-title d-block alt-font text-white">Jemmy Watson</span>
+                          <span class="team-sub-title text-small d-block text-white text-uppercase">Designer</span>
+                          <div class="social-icon w-100 position-absolute bottom-30px left-0px">
+                              <a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                              <a href="https://www.instagram.com" target="_blank" class="text-white"><i class="fab fa-instagram"></i></a>
+                              <a href="https://twitter.com/" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                          </div>
+                      </figcaption>
+                  </figure>
+              </div> -->
+              <!-- end team member -->
+              <!-- start team member -->
+              <!-- <div class="col team-style-01 text-center">
+                  <figure class="border-radius-5px">
+                      <div class="team-member-image">
+                          <img alt="" src="https://placehold.it/525x639">
+                          <div class="team-overlay bg-transparent-gradient-shamrock-green-light-orange border-radius-5px"></div>
+                      </div>
+                      <figcaption class="align-items-center justify-content-center d-flex flex-column padding-20px-lr padding-30px-tb">
+                          <span class="team-title d-block alt-font text-white">Jeremy Dupont</span>
+                          <span class="team-sub-title text-small d-block text-white text-uppercase">Manager</span>
+                          <div class="social-icon w-100 position-absolute bottom-30px left-0px">
+                              <a href="https://www.facebook.com/" target="_blank" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                              <a href="https://www.instagram.com" target="_blank" class="text-white"><i class="fab fa-instagram"></i></a>
+                              <a href="https://twitter.com/" target="_blank" class="text-white"><i class="fab fa-twitter"></i></a>
+                          </div>
+                      </figcaption>
+                  </figure>
+              </div> -->
+              <!-- end team member -->
+          </div>
+      </div>
+    </section>
+    <!-- start scroll to top -->
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>
+    <!-- end scroll to top -->
+    <!-- javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/theme-vendors.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/members.js"></script>
 </body>
 </html>

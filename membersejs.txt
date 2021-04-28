@@ -1,0 +1,51 @@
+<ul id="list">
+      <% for(i = 0; i < members.length; i++) { %>
+          <li class="person">
+            <div>
+              <div>
+                <section class="info">
+                  <h2 class="name"><span class="openPage"><a href="/<%= members[i].userId %>"><%= members[i].first %> <%= members[i].last %></a></span></h2>
+                  <h2 class="nickname"><%= members[i].nickname %></h2>
+                  <h3 class="rank"><%= members[i].rank %></h3>
+                  <h3 class="membership"><%= members[i].membership %></h3>
+                </section>
+                <img class="profile" src="/img/<%= members[i].picture %>" >
+                <button class="delete">DELETE</button>
+                <button class="edit">Edit</button>
+              </div>
+            </div>
+            <form class="editForm hide">
+              <div>
+                <label for="name">First Name:</label>
+                <input class="first" type="text" name="newFirst" placeholder="Enter name">
+              </div>
+              <div>
+                <label for="name">Last Name:</label>
+                <input class="last" type="text" name="newLast" placeholder="Enter name">
+              </div>
+              <div>
+                <label for="nickname">Capoeira Name:</label>
+                <input class="nickname" type="text" name="newNickname" placeholder="Enter Capoeira name">
+              </div>
+              <div>
+                <label for="rank">Rank:</label>
+                <input class="rank" type="text" name="newRank" placeholder="Enter rank (Graduado/Monitor/Formado)">
+              </div>
+              <div>
+                <label for="newMembership">Membership</label>
+                <select class="newMembership">
+                    <% for(j = 0; j < membership.length; j++) { %>
+                    <option value="<%=membership[j].name%>"><%=membership[j].name%></option>
+                    <% } %>
+                </select>
+              </div>
+              <div>
+                <label for="profile">Profile Picture:</label>
+                <input class="profile" type="file" name="file-to-upload">
+              </div>
+              <input type="submit" class="submit submitEdit" value="Submit">
+              <button type="button" class="cancelEdit">Cancel</button>
+            </form>
+          </li>
+      <% } %>
+    </ul>

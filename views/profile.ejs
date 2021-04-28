@@ -1,84 +1,215 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Capoeira School Tracker</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="ThemeZaa">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+  <meta name="description"
+    content="Litho is a clean and modern design, BootStrap 4 responsive, business and portfolio multipurpose HTML5 template with 36+ ready homepage demos.">
+
+  <!-- style sheets and font icons  -->
+  <link rel="stylesheet" type="text/css" href="css/font-icons.min.css">
+  <link rel="stylesheet" type="text/css" href="css/theme-vendors.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+  <title>Capoeira School Tracker</title>
 </head>
+
 <body>
-  <% if (admin) { %>
-    <header>
-      <nav>
-        <li><a href="/:id">Profile</a></li>
-        <li><a href="/members">Members</a></li>
-        <li><a href="/memberships">Memberships</a></li>
-        <li><a href="/locations">Locations</a></li>
-        <li><a href="/classes">Classes</a></li>
-        <li><a href="/calendar">Calendar</a></li>
-      </nav>
-    </header>
-  <% } %>
-  <body id="profileBg">
-    <div class="profile container">
-    
-        <div class="header text-center">
-            <h1><span class="fa fa-bomb"></span> Main Page</h1>
-            <a href="/logout" class="btn btn-default btn-lg">Logout</a>
+  <!-- start header -->
+  <header>
+    <!-- start navigation -->
+    <nav
+      class="navbar top-space navbar-expand-lg navbar-boxed navbar-dark bg-black header-dark fixed-top responsive-sticky">
+      <div class="container-fluid nav-header-container">
+        <div class="col-auto col-sm-6 col-lg-2 mr-auto pl-lg-0">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="default-logo" alt="">
+            <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="alt-logo" alt="">
+            <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="mobile-logo" alt="">
+          </a>
         </div>
-    
-        <div class="row">
-    
-            <div class="col-sm-12">
-              <button id="edit">EDIT</button>
-              <form id="editForm" class="hide">
-                <label for="first">First Name</label>
-                <input type="text" id="first">
-                <label for="last">Last Name</label>
-                <input type="text" id="last">
-                <label for="nickname">Nickname</label>
-                <input type="text" id="nickname">
-                <% if (admin) { %>
-                  <label for="rank">Rank</label>
-                  <input type="text" id="rank">
+        <div class="col-auto menu-order px-lg-0">
+          <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-line"></span>
+            <span class="navbar-toggler-line"></span>
+            <span class="navbar-toggler-line"></span>
+            <span class="navbar-toggler-line"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav alt-font">
+              <li class="nav-item dropdown megamenu">
+                <a href="/:id" class="nav-link">Profile</a>
+              </li>
+              <% if (admin) { %>
+                <li class="nav-item dropdown simple-dropdown">
+                  <a href="/members" class="nav-link">Members</a>
+                </li>
+                <li class="nav-item dropdown simple-dropdown">
+                  <a href="/memberships" class="nav-link">Memberships</a>
+                </li>
+                <li class="nav-item dropdown megamenu">
+                  <a href="/locations" class="nav-link">Locations</a>
+                </li>
+                <li class="nav-item dropdown simple-dropdown">
+                  <a href="/classes" class="nav-link">Classes</a>
+                </li>
                 <% } %>
-                <label for="email">Email</label>
-                <input type="text" id="email">
-                <label for="address">Address</label>
-                <input type="text" id="address">
-                <label for="telephone">Telephone</label>
-                <input type="text" id="telephone">
-                <button id="submitChanges">Submit</button>
-                <button type="button" class="cancel">Cancel</button>
-              </form>
-              <h3 class="text-center">APOM</h3>
+              <li class="nav-item dropdown simple-dropdown">
+                <a href="/calendar" class="nav-link">Calendar</a>
+              </li>
+              <li class="nav-item dropdown megamenu">
+                <a href="/logout" class="nav-link">Logout</a>
+              </li>
+            </ul>
           </div>
-        <div class="col-sm-6 profileInfo">
-          <img src="img/<%= info.picture %>">
-          <h3>Name: <span class="first"><%= info.first %></span> <span class="last"><%= info.last %></span></h3>
-          <h3>Capoeira Name: <span class="nickname"><%= info.nickname %></span></h3>
-          <h3>Rank: <span class="rank"><%= info.rank %></span></h3>
-          <h3>Email: <span class="email"><%= info.email %></span></h3>
-          <h3>Address: <span class="address"><%= info.address %></span></h3>
-          <h3>Membership: <%= info.membership %> 
-            <% if (info.membership === 'None') { %>
-              <button>Purchase Membership</button>
-            <% } %>
-            </h3>
-          <h3>Telephone: <span class="telephone"><%= info.telephone %></span></h3>
-          <h3>Signed Up: <%= info.signupDate.slice(0, info.signupDate.indexOf('G')) %></h3>
-          <% if (admin && info.userId.toString() != selfId.toString()) { %>
-            <h3> Role: <span class="role"><%= role %></span></h3>
-            <button id="roleChange">Change Role</button>
-            <div class="roleSection hide">
-              <input type="text" id="role">
-              <button id="newRole">Submit</button>
-              <button class="cancel">Cancel</button>
-            </div>  
-          <% } %>
+        </div>
+    </nav>
+    <!-- end navigation -->
+  </header>
+  <!-- end header -->
+
+  <body id="profileBg" class="bg-light-gray">
+      <!-- start section -->
+      <section class="bg-light-gray wow animate__fadeIn">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 tab-style-02">
+              <div class="tab-content">
+                <!-- start tab item -->
+                <div id="research" class="tab-pane fade in active show">
+                  <div class="row align-items-lg-center">
+                    <div class="col-12 col-lg-4 col-md-12 md-margin-6-rem-bottom sm-margin-4-rem-bottom">
+                      <img src="img/<%= info.picture %>" alt="" />
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-6 padding-4-rem-left lg-padding-2-rem-left md-padding-15px-left sm-margin-30px-bottom">
+                      <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-md-12 text-center margin-four-bottom">
+                            <h6 class="alt-font text-extra-dark-gray font-weight-500">Information</h6>
+                          </div>
+                          <a class="btn btn-medium btn-medium btn-round-edge btn-fast-blue popup-with-zoom-anim"
+                            href="#modal-popup2" id="edit">Edit Profile</a>
+                          <!-- start modal pop-up -->
+                          <div id="modal-popup2"
+                            class="zoom-anim-dialog col-11 col-xl-3 col-lg-6 col-md-8 col-sm-9 mx-auto bg-white text-center modal-popup-main padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                            <!-- start edit form -->
+                            <form id="editForm" class="hide">
+                              <label for="first">First Name</label>
+                              <input type="text" id="first">
+                              <label for="last">Last Name</label>
+                              <input type="text" id="last">
+                              <label for="nickname">Nickname</label>
+                              <input type="text" id="nickname">
+                              <% if (admin) { %>
+                              <label for="rank">Rank</label>
+                              <input type="text" id="rank">
+                              <% } %>
+                              <label for="email">Email</label>
+                              <input type="text" id="email">
+                              <label for="address">Address</label>
+                              <input type="text" id="address">
+                              <label for="telephone">Telephone</label>
+                              <input type="tel" id="telephone">
+                              <button class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss "
+                                id="submitChanges">Submit</button>
+                            </form>
+                            <!-- end edit form -->
+                            <a class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss"
+                              href="#">Dismiss</a>
+                          </div>
+                          <!-- end modal pop-up -->
+                        </div>
+                      </div>
+                      <div class="row justify-content-center profileInfo">
+                        <div>
+                          <ul class="list-style-03">
+                            <li>Name: <span class="first"><%= info.first %></span> <span
+                                class="last"><%= info.last %></span></li>
+                            <li>Capoeira Name: <span class="nickname"><%= info.nickname %></span></li>
+                            <li>Rank: <span class="rank"><%= info.rank %></span></li>
+                            <li>Email: <span class="email"><%= info.email %></span></li>
+                            <li>Address: <span class="address"><%= info.address %></span></li>
+                            <li>Telephone: <span class="telephone"><%= info.telephone %></span></li>
+                            <li>Signup Date: <%= info.signupDate.slice(0, info.signupDate.indexOf('G')) %>
+                            </li>
+                            <li><% if (admin && info.userId.toString() != selfId.toString()) { %>
+                              <button id="roleChange">Change Role to <span id="role"><%= (role === 'admin') ? 'Student' : 'Admin' %></span></button>
+                              <% } %></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-6 padding-4-rem-left lg-padding-2-rem-left md-padding-15px-left sm-margin-30px-bottom">
+                      <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-md-12 text-center margin-four-bottom">
+                            <h6 class="alt-font text-extra-dark-gray font-weight-500">Membership</h6>
+                          </div>
+                          <% if (info.membership === 'None') { %>
+                          <a class="btn btn-medium btn-medium btn-round-edge btn-fast-blue popup-with-zoom-anim"
+                            href="#modal-popup2" id="edit">Purchase Membership</a>
+                            <% } %>
+                          <!-- start modal pop-up -->
+                          <div id="modal-popup2"
+                            class="zoom-anim-dialog col-11 col-xl-3 col-lg-6 col-md-8 col-sm-9 mx-auto bg-white text-center modal-popup-main padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                            <!-- start edit form -->
+                            <form id="editForm" class="hide">
+                              <label for="first">First Name</label>
+                              <input type="text" id="first">
+                              <label for="last">Last Name</label>
+                              <input type="text" id="last">
+                              <label for="nickname">Nickname</label>
+                              <input type="text" id="nickname">
+                              <% if (admin) { %>
+                              <label for="rank">Rank</label>
+                              <input type="text" id="rank">
+                              <% } %>
+                              <label for="email">Email</label>
+                              <input type="text" id="email">
+                              <label for="address">Address</label>
+                              <input type="text" id="address">
+                              <label for="telephone">Telephone</label>
+                              <input type="tel" id="telephone">
+                              <button class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss "
+                                id="submitChanges">Submit</button>
+                            </form>
+                            <!-- end edit form -->
+                            <a class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss"
+                              href="#">Dismiss</a>
+                          </div>
+                          <!-- end modal pop-up -->
+                        </div>
+                      </div>
+                      <div class="row justify-content-center profileInfo">
+                        <div>
+                          <ul class="list-style-03">
+                            <li>Membership: <%= info.membership %></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end tab item -->
+            </div>
+          </div>
         </div>
     </div>
-    
+    </section>
+    <!-- end section -->
+    <!-- start scroll to top -->
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>
+    <!-- end scroll to top -->
+    <!-- javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/theme-vendors.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script src="js/profile.js"></script>
-    </body>
-    </html>
+  </body>
+
+</html>

@@ -1,64 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="memberships.css">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="ThemeZaa">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+        <meta name="description" content="Litho is a clean and modern design, BootStrap 4 responsive, business and portfolio multipurpose HTML5 template with 36+ ready homepage demos.">
+        
+        <!-- style sheets and font icons  -->
+        <link rel="stylesheet" type="text/css" href="css/font-icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/theme-vendors.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+        <link rel="stylesheet" type="text/css" href="css/memberships.css" />
+          <title>Capoeira School Tracker</title>
+      </head>
 <body>
-    <header>
-        <nav>
-          <li><a href="/:id">Profile</a></li>
-          <li><a href="/members">Members</a></li>
-          <li><a href="/memberships">Memberships</a></li>
-          <li><a href="/locations">Locations</a></li>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="/calendar">Calendar</a></li>
-        </nav>
-    </header>
-    <h1>Memberships</h1>
-    <button id="showForm">Add New Membership Option</button>
-    <form id="membershipForm" class="hide">
-        <label for="name">Membership Name</label>
-        <input id="name" type="text">
-        <label for="cost">Membership Cost</label>
-        <input id="cost" type="text">
-        <label for="duration">Membership Duration</label>
-        <input id="duration" type="number">
-        <select class="duration">
-            <option value="day">Day(s)</option>
-            <option value="month">Month(s)</option>
-            <option value="year">Year(s)</option>
-        </select>
-        <label for="limit">Limit</label>
-        <select id="limit">
-            <option value="Unlimited" selected="selected">Unlimited</option>
-            <option value="Limited">Limited</option>
-        </select>
-        <input type="number" id="limitNumber" class="hide">
-        <select id="occurences" class="hide">
-            <option value="classes every week">classes every week</option>
-            <option value="classes every month">class every month</option>
-            <option value="class punch card">class punch card</option>
-        </select>
-        <input type="submit" value="Add" class="sbmtMmbrshp">
-    </form>
-    <table class="memberships">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Duration</th>
-        </tr>
-        <% for (i = 0; i < membership.length; i++) { %>
-            <tr>
-                <td><h4 class="membershipName"><%= membership[i].name %></span></h4></td>
-                <td><h4 class="membershipCost">$<%= membership[i].cost %>.00</h4></td>
-                <td><h4 class="membershipDuration"><%= membership[i].duration %> <%= membership[i].durationUnit + (membership[i].duration > 1 ? 's' : '') %></h4></td>
-            </tr>
-        <% } %>
-    </table>
+      <!-- start header -->
+  <header>
+    <!-- start navigation -->
+    <nav class="navbar top-space navbar-expand-lg navbar-boxed navbar-dark bg-black header-dark fixed-top responsive-sticky">
+      <div class="container-fluid nav-header-container">
+          <div class="col-auto col-sm-6 col-lg-2 mr-auto pl-lg-0">
+              <a class="navbar-brand" href="index.html">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="default-logo" alt="">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="alt-logo" alt="">
+                  <img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" class="mobile-logo" alt="">
+              </a>
+          </div>
+          <div class="col-auto menu-order px-lg-0">
+              <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+                  <span class="navbar-toggler-line"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav alt-font">
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/:id" class="nav-link">Profile</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/members" class="nav-link">Members</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/memberships" class="nav-link">Memberships</a>
+                      </li>
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/locations" class="nav-link">Locations</a>
+                      </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/classes" class="nav-link">Classes</a>
+                          </li>
+                      <li class="nav-item dropdown simple-dropdown">
+                          <a href="/calendar" class="nav-link">Calendar</a>
+                          </li>
+                      <li class="nav-item dropdown megamenu">
+                          <a href="/logout" class="nav-link">Logout</a>
+                          </li>
+                  </ul>
+              </div>
+          </div>
+    </nav>
+  <!-- end navigation -->
+  </header>
+  <!-- end header -->
+  <!-- start section -->
+  <section class="bg-light-gray wow animate__fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- title -->
+            <div class="col-md-12 text-center">
+                <h6 class="alt-font text-extra-dark-gray font-weight-500">Add A New Membership</h6>
+            </div>
+            <!-- end title -->
+            <div class="col-12 col-xl-6 col-lg-8 col-md-10 text-center">
+                <h6 class="font-weight-300 margin-eight-bottom sm-margin-30px-bottom">Adding a member here means creating a profile, not user. A message will be sent to the given email with the signup instructions.</h6>
+                <a class="btn btn-medium btn-medium btn-round-edge btn-fast-blue popup-with-zoom-anim" href="#modal-popup2">Create Membership</a>
+                <!-- start modal pop-up -->
+                <div id="modal-popup2" class="zoom-anim-dialog col-11 col-xl-3 col-lg-6 col-md-8 col-sm-9 mx-auto bg-white text-center modal-popup-main padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                    <span class="text-extra-dark-gray text-uppercase alt-font text-extra-large font-weight-600 margin-15px-bottom d-block">NEW MEMBERSHIP</span>
+                    <p>Please provide the following information.</p>
+                    <!-- start new member form -->
+                    <form id="membershipForm">
+                        <label for="name">Name</label>
+                        <input id="name" type="text">
+                        <label for="cost">Cost</label>
+                        <input id="cost" type="text">
+                        <label for="duration">Duration</label>
+                        <input id="duration" type="number">
+                        <select class="duration">
+                            <option value="day">Day(s)</option>
+                            <option value="month">Month(s)</option>
+                            <option value="year">Year(s)</option>
+                        </select>
+                        <label for="limit">Limit</label>
+                        <select id="limit">
+                            <option value="Unlimited" selected="selected">Unlimited</option>
+                            <option value="Limited">Limited</option>
+                        </select>
+                        <input type="number" id="limitNumber" class="hide">
+                        <select id="occurences" class="hide">
+                            <option value="classes every week">classes every week</option>
+                            <option value="classes every month">class every month</option>
+                            <option value="class punch card">class punch card</option>
+                        </select>
+                        <input type="submit" value="Add" class="sbmtMmbrshp btn btn-fancy btn-small btn-transparent-light-gray">
+                    </form>
+                    <!-- end new member form -->
+                    <a class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss" href="#">Dismiss</a>
+                </div>
+                <!-- end modal pop-up -->
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- end section -->
+  <!-- start section -->
+  <section class="big-section bg-light-gray wow animate__fadeIn">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center memberships">
+            <!-- start feature box item -->
+            <% for (i = 0, count = 0; i < membership.length; i++) { %>
+                <div class="col sm-margin-30px-bottom xs-margin-15px-bottom wow animate__fadeIn membership <% if (i >= 3) { %> <%= 'margin-15px-top' %> <% } %> originalInfo">
+                    <div class="feature-box text-left feature-box-show-hover box-shadow-small-hover feature-box-bg-white-hover border-all border-color-black-transparent overflow-hidden">
+                        <div class="feature-box-move-bottom-top padding-3-rem-tb padding-4-rem-lr md-padding-2-rem-tb md-padding-2-half-rem-lr sm-padding-3-rem-tb sm-padding-4-half-rem-lr">
+                            <h4 class="feature-box-icon alt-font font-weight-500 text-gradient-sky-blue-pink-2 d-inline-block margin-20px-bottom letter-spacing-minus-2px membershipName"><%= membership[i].name %></h4>
+                            <div class="feature-box-content last-paragraph-no-margin">
+                                <span class="text-extra-dark-gray text-extra-medium font-weight-600 text-uppercase d-block margin-10px-bottom alt-font">$<span class="membershipCost"><%= parseFloat(membership[i].cost).toFixed(2) %></span></span>
+                                <p><span class="membershipDuration"><%=membership[i].duration %></span> <span class="membershipDurationUnit"><%= membership[i].durationUnit %></span><%= (membership[i].duration > 1) ? 's' : '' %> |
+                                <span class="membershipLimit"><%=membership[i].limit%></span><br><span class="membershipLimitNumber"><%=membership[i].limitNumber%></span> <span class="membershipOccurences"><%=membership[i].occurences %></span></p>
+                            </div>
+                            <div class="move-bottom-top margin-15px-top">
+                                <a href="#modal-popup<%=(i == 2) ? -2 : i%>" class="btn btn-link p-0 btn-extra-large text-extra-dark-gray md-margin-auto-lr popup-with-zoom-anim editBtn">Edit</a>
+                                <!-- start section -->
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-xl-6 col-lg-8 col-md-10 text-center">
+                                        <!-- start modal pop-up -->
+                                        <div id="modal-popup<%=(i == 2) ? -2 : i%>" class="zoom-anim-dialog col-11 col-xl-3 col-lg-6 col-md-8 col-sm-9 mx-auto bg-white text-center modal-popup-main mpmEdit padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                                            <span class="text-extra-dark-gray text-uppercase alt-font text-extra-large font-weight-600 margin-15px-bottom d-block">Edit</span>
+                                            <p>Please provide the following information.</p>
+                                            <!-- start new member form -->
+                                            <form class="editMembership">
+                                                <label for="name">Name</label>
+                                                <input class="name" type="text">
+                                                <label for="cost">Cost</label>
+                                                <input class="cost" type="text">
+                                                <label for="duration">Duration</label>
+                                                <input class="duration" type="number">
+                                                <select class="durationUnit">
+                                                    <option value="day">Day(s)</option>
+                                                    <option value="month">Month(s)</option>
+                                                    <option value="year">Year(s)</option>
+                                                </select>
+                                                <label for="limit">Limit</label>
+                                                <select class="limit">
+                                                    <option value="Unlimited">Unlimited</option>
+                                                    <option value="Limited">Limited</option>
+                                                </select>
+                                                <input type="number" class="limitNumber hide">
+                                                <select class="occurences hide">
+                                                    <option value="classes every week">classes every week</option>
+                                                    <option value="classes every month">class every month</option>
+                                                    <option value="class punch card">class punch card</option>
+                                                </select>
+                                                <button type="button" value="Submit" class="sbmtEdit btn btn-fancy btn-small btn-transparent-light-gray">Edit</button>
+                                            </form>
+                                            <!-- end new member form -->
+                                            <a class="btn btn-fancy btn-small btn-transparent-light-gray popup-modal-dismiss" href="#">Dismiss</a>
+                                        </div>
+                                        <!-- end modal pop-up -->
+                                    </div>
+                                </div>
+                                <!-- end section -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <!-- end feature box item -->
+        </div>
+    </div>
+</section>
+<!-- end section -->
+<!-- start section -->
+    <!-- start scroll to top -->
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>
+    <!-- end scroll to top -->
+    <!-- javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/theme-vendors.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/memberships.js"></script>
 </body>
 </html>

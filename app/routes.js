@@ -132,6 +132,14 @@ aws.config.region = 'us-east-1';
         })
     })
 
+    app.put('/editMembership', isLoggedIn, function(req, res) {
+      const data = {};
+      for(p in req.body)
+        data[p] = p;
+      console.log(data);
+      // db.collection('memberships').findOneAndUpdate()
+    })
+
     app.post('/membershipLog', isLoggedIn, (req, res) => {
       db.collection('membershipLog').insertOne({ 
         member: req.body.userId, 

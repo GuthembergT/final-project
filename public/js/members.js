@@ -1,4 +1,4 @@
-const list = document.querySelector('#list');
+const list = document.querySelector('#membersList');
 const newPersonForm = document.querySelector('.new');
 
 
@@ -55,7 +55,7 @@ function addPerson(e){
     fetch('members', {
         method:'post',
         body:form
-    })
+    }).then(() => { window.location.reload(); })
 
 
 }
@@ -256,5 +256,5 @@ function deleteMember(e) {
         .then(function(response) {
             window.location.reload();
         })
-}
+    }
 }

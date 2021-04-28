@@ -18,7 +18,7 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var ObjectId     = require('mongodb').ObjectID;
 var configDB = require('./config/database.js');
-var configAWS = require('./config/aws.js')
+var configAWS = require('./config/aws.js');
 
 var app      = express();
 var port     = process.env.PORT || 5000;
